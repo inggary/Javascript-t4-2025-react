@@ -1,15 +1,28 @@
 'use client'
 
 import { useState } from "react";
+import { user_data } from "@/database/database_user.js";
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
 
     const [usuario, setUsuario] = useState("")
+    const [pass, setPass] = useState("")
+    const router = useRouter();
 
-    const registro_usuario = (valor) => {
-        setUsuario(valor)
-        console.log("Registrando usuario:", usuario);
+    const Submit = () => {
+
+        if(usuario=="" | pass==""){
+            alert('error, contenido vacio')
+        }else{
+            user_data.user = usuario
+            user_data.pass = pass
+
+            router.push('/')
+        }
+
     }
+
 
     return (
         <div className="relative flex h-auto min-h-screen w-full flex-col bg-slate-50 group/design-root overflow-x-hidden" >
@@ -24,7 +37,7 @@ export default function Register() {
                                     placeholder="Coloque su usuario"
                                     className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d141b] focus:outline-0 focus:ring-0 border border-[#cfdbe7] bg-slate-50 focus:border-[#cfdbe7] h-14 placeholder:text-[#4c739a] p-[15px] text-base font-normal leading-normal"
                                     value={usuario}
-                                    onChange={(e) => registro_usuario(e.target.value)}
+                                    onChange={(e) => setUsuario(e.target.value)}
                                 />
                             </label>
                         </div>
@@ -34,15 +47,18 @@ export default function Register() {
                                 <input
                                     placeholder="Enter your password"
                                     className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d141b] focus:outline-0 focus:ring-0 border border-[#cfdbe7] bg-slate-50 focus:border-[#cfdbe7] h-14 placeholder:text-[#4c739a] p-[15px] text-base font-normal leading-normal"
-                                    value=""
+                                    type="password"
+                                    value={pass}
+                                    onChange={(e) => setPass(e.target.value)}
                                 />
                             </label>
                         </div>
                         <div className="flex px-4 py-3 justify-center">
                             <button
                                 className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#1380ec] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]"
+                                onClick={Submit}
                             >
-                                <span className="truncate">Create Account</span>
+                                <span className="truncate">Registrar</span>
                             </button>
                         </div>
                         <p className="text-[#4c739a] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center underline">Already have an account? Sign in</p>

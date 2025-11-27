@@ -1,18 +1,25 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { useLogin } from "@/context/login";
 import { Home_page } from "@/components/home_page.jsx";
-import { Navbar } from "@/components/navbar";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
-  const [isLogin, setIsLogin] = useState(true)
+  const router = useRouter()
+    const { islogin } = useLogin()
+  
+    useEffect(() => {
+      if (islogin) {
+        router.replace("/user")
+      }
+    }, [islogin, router])
   
 
   return (
 
     <div>
-      <Navbar login={isLogin} />
       <Home_page />
     </div>
 

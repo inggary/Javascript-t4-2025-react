@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 
 export const Home_page = () => {
@@ -13,16 +14,20 @@ export const Home_page = () => {
             </p>
             <div className="flex justify-center">
               <div className="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3">
-                <button
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#1380ec] text-slate-50 text-base font-bold leading-normal tracking-[0.015em] w-full"
-                >
-                  <span className="truncate">Registrarse</span>
-                </button>
-                <button
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#e7edf3] text-[#0d141b] text-base font-bold leading-normal tracking-[0.015em] w-full"
-                >
-                  <span className="truncate">Iniciar sesión</span>
-                </button>
+                <Link href="/register">
+                  <button
+                    className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#1380ec] text-slate-50 text-base font-bold leading-normal tracking-[0.015em] w-full"
+                  >
+                    Registrarse
+                  </button>
+                </Link>
+                <Link href="/login">
+                  <button
+                    className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#e7edf3] text-[#0d141b] text-base font-bold leading-normal tracking-[0.015em] w-full"
+                  >
+                    Iniciar sesión
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,12 +1,15 @@
+'use client'
+import { useLogin } from "@/context/login";
+import Link from "next/link";
 
+export const Navbar = () => {
 
-
-export const Navbar = ({login}) => {
+  const { islogin } = useLogin();
 
     return(
       <div>
       {
-        login 
+        islogin 
         ?
         (
           <div className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] px-10 py-3">
@@ -25,7 +28,9 @@ export const Navbar = ({login}) => {
                 ></path>
               </svg>
             </div>
+            <Link href="/">
             <h2 className="text-[#0d141b] text-lg font-bold leading-tight tracking-[-0.015em]">StudyCentral</h2>
+            </Link>
           </div>
           <div className="flex flex-1 justify-end gap-8">
             <div className="flex items-center gap-9">
@@ -58,7 +63,9 @@ export const Navbar = ({login}) => {
                 ></path>
               </svg>
             </div>
+            <Link href="/">
             <h2 className="text-[#0d141b] text-lg font-bold leading-tight tracking-[-0.015em]">StudyCentral</h2>
+            </Link>
           </div>
         </div>
         )
