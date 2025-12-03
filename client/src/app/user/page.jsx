@@ -11,16 +11,19 @@ export default function User() {
   const router = useRouter()
   const { islogin } = useLogin()
   const [pedido, setPedido ] = useState({
-    tipo : "",
-    sabor : ""
-
-})
+      tipo : "",
+      sabor : ""
+  })
 
   useEffect(() => {
     if (!islogin) {
       router.replace("/")
     }
   }, [islogin, router])
+
+  const submit = (sabor) => {
+    router.push(`/recibo/${pedido.tipo}/${sabor}`)
+  }
 
   return (
     <div className="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
@@ -31,17 +34,19 @@ export default function User() {
               <div className="w-full text-center mb-8 md:mb-12">
                 <h1 className="text-gray-900 tracking-tight text-3xl sm:text-4xl font-bold leading-tight">Elige tu tipo de Pizza</h1>
               </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full p-4">
               {
                 pedido.tipo == "" 
                 ?
-                Object.keys(pizzas).map((tipo_pizza) => {
-                  return(<Boton_pizza producto={tipo_pizza} clave={'tipo'} ></Boton_pizza>)
+                Object.keys(pizzas).map((tipo_pizza, index) => {
+                  return(<Boton_pizza key={index} producto={tipo_pizza} clave={'tipo'} pedido={pedido} setPedido={setPedido} ></Boton_pizza>)
                 })
                 :
-                <h1>hola</h1>
+                pizzas[pedido.tipo].map((sabor_pizza, index) => {
+                  return( <button key={index} onClick={() => submit(sabor_pizza)}><Boton_pizza producto={sabor_pizza} clave={'sabor'} pedido={pedido} setPedido={setPedido} ></Boton_pizza></button>)
+                })
               }
-
+            </div>
             </div>
           </div>
         </div>

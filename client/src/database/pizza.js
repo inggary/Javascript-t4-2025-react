@@ -4,10 +4,13 @@
 export const pizzas = {
     'vegetariana' : [
         'tofu',
-        'hongo'
+        'hongo',
+        'pimiento'
     ],
     'no-vegetariana' : [
         'peperoni',
-        'jamon'
+        'jamon',
+        'salchicha',
+        'pollo'
     ]
 }
